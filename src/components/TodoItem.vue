@@ -4,18 +4,18 @@ import TodoService, { type Todo } from "@/services/TodoService";
 import TodoList from "@/components/TodoList.vue";
 
 const props = defineProps<{
-  parent: Todo,
-  todo: Todo,
+  parent: Todo;
+  todo: Todo;
 }>();
 
 const emit = defineEmits<{
-  updateList: [],
-  updateParent: [],
+  updateList: [];
+  updateParent: [];
 }>();
 
 const expanded: Ref<boolean> = ref(false);
 const editing: Ref<boolean> = ref(false);
-  const newContent: Ref<string> = ref("");
+const newContent: Ref<string> = ref("");
 const displayedTodo: Ref<Todo> = ref(props.todo);
 
 watch(props.todo, () => {
@@ -37,7 +37,7 @@ function onButtonEditClick() {
   newContent.value = displayedTodo.value.content;
 }
 
-function onInputNewContentEnterKeyup () {
+function onInputNewContentEnterKeyup() {
   if (!newContent.value.trim()) {
     return;
   }
@@ -76,11 +76,11 @@ function updateParent() {
       class="item-editor"
     >
       <input
-        class="input-new-content"
         v-model="newContent"
+        class="input-new-content"
         placeholder="Type something, and press Enter to add an TODO item"
         @keyup.enter="onInputNewContentEnterKeyup"
-      />
+      >
     </div>
     <div
       v-else
@@ -93,7 +93,7 @@ function updateParent() {
             type="checkbox"
             :checked="displayedTodo.done"
             @change="onInputItemDoneChange"
-          />
+          >
           {{ displayedTodo.content }}
           ({{ displayedTodo.children.filter((child) => child.done).length }}/{{ displayedTodo.children.length }})
         </label>
@@ -119,7 +119,7 @@ function updateParent() {
       class="sublist"
       :parent="displayedTodo"
       :todos="displayedTodo.children"
-      @updateParent="updateData"
+      @update-parent="updateData"
     />
   </div>
 </template>

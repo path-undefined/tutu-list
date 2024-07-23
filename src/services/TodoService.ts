@@ -94,10 +94,10 @@ export class TodoService {
           return result;
         }
       }
-  
+
       return null;
-    }
-    
+    };
+
     return searchRecursively(this.root);
   }
 
@@ -113,10 +113,10 @@ export class TodoService {
           return result;
         }
       }
-  
+
       return null;
-    }
-    
+    };
+
     return searchRecursively(this.root);
   }
 }

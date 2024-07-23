@@ -4,12 +4,12 @@ import TodoService, { type Todo } from "@/services/TodoService";
 import TodoItem from "@/components/TodoItem.vue";
 
 const props = defineProps<{
-  parent: Todo,
-  todos: Todo[],
+  parent: Todo;
+  todos: Todo[];
 }>();
 
 const emit = defineEmits<{
-  updateParent: [],
+  updateParent: [];
 }>();
 
 const displayedTodos: Ref<Todo[]> = ref(props.todos);
@@ -19,7 +19,7 @@ watch(props.todos, () => {
   displayedTodos.value = props.todos;
 });
 
-function onInputNewContentEnterKeyup () {
+function onInputNewContentEnterKeyup() {
   if (!newContent.value.trim()) {
     return;
   }
@@ -58,17 +58,17 @@ function updateParent() {
       <todo-item
         :parent="parent"
         :todo="todo"
-        @updateList="updateData"
-        @updateParent="updateParent"
+        @update-list="updateData"
+        @update-parent="updateParent"
       />
     </li>
     <li class="list-item">
       <input
-        class="input-new-content"
         v-model="newContent"
+        class="input-new-content"
         placeholder="Type something, and press Enter to add an TODO item"
         @keyup.enter="onInputNewContentEnterKeyup"
-      />
+      >
     </li>
   </ul>
 </template>
