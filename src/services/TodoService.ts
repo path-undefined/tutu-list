@@ -35,11 +35,11 @@ export class TodoService {
   }
 
   public loadTodosFromBase64String(base64: string) {
-    this.root = JSON.parse(atob(base64));
+    this.root = JSON.parse(escape(atob(base64)));
   }
 
   public getTodosAsBase64String(): string {
-    return btoa(JSON.stringify(this.root));
+    return btoa(unescape(JSON.stringify(this.root)));
   }
 
   public addTodo(parentId: string, todo: Todo) {
