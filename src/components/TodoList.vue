@@ -15,7 +15,7 @@ const emit = defineEmits<{
 const displayedTodos: Ref<Todo[]> = ref(props.todos);
 const newContent: Ref<string> = ref("");
 
-watch(props.todos, () => {
+watch(() => props.todos, () => {
   displayedTodos.value = props.todos;
 });
 

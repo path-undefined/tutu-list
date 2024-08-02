@@ -34,6 +34,14 @@ export class TodoService {
     localStorage.setItem(TodoService.LOCAL_STORAGE_KEY, rootJson);
   }
 
+  public loadTodosFromBase64String(base64: string) {
+    this.root = JSON.parse(atob(base64));
+  }
+
+  public getTodosAsBase64String(): string {
+    return btoa(JSON.stringify(this.root));
+  }
+
   public addTodo(parentId: string, todo: Todo) {
     const parent = this.searchTodoById(parentId);
     if (!parent) {
